@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "no-slop-skills",
+  "owner": {
+    "name": "Ricky Robinett",
+    "url": "https://github.com/rickyrobinett"
+  },
+  "metadata": {
+    "description": "Agent skills that keep AI output from looking like slop.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "no-slop-skills",
+      "description": "Agent skills that keep AI output from looking like slop, starting with no-slop-slides.",
+      "source": "./",
+      "strict": false,
+      "homepage": "https://github.com/rickyrobinett/no-slop-skills",
+      "license": "MIT",
+      "keywords": ["skills", "agents", "slides", "presentations", "writing", "no-slop"],
+      "skills": [
+        "./skills/no-slop-slides"
+      ]
+    }
+  ]
+}
