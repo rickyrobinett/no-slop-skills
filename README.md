@@ -1,25 +1,33 @@
 # no-slop-skills
 
-Agent skills that keep AI output from looking like slop.
+A collection of [Agent Skills](https://agentskills.io) (`SKILL.md` instruction files) that give AI coding agents concrete rules for tasks like slide decks and `README.md` files. Works with Antigravity CLI, Claude Code, Codex, Cursor, Gemini CLI, and other tools that support the Agent Skills format.
 
-## Install
+## Quick Start
 
-**Fastest path — any agent, one command** (Antigravity, Claude Code, Codex, Cursor, Gemini CLI, and more):
+Install all skills (requires Node.js):
 
 ```bash
 npx skills add rickyrobinett/no-slop-skills
 ```
 
-To install a single skill:
+Then invoke a skill in your agent with a prompt (or let it trigger automatically on a matching task):
 
-```bash
-npx skills add rickyrobinett/no-slop-skills --skill no-slop-slides
+```text
+Use the no-slop-readme skill to review and rewrite this repository's README.md.
 ```
 
-Prefer a native tool integration? Pick your tool below.
+To install a single skill instead of the full collection:
+
+```bash
+npx skills add rickyrobinett/no-slop-skills --skill no-slop-readme
+```
+
+### Other installation methods
 
 <details>
 <summary><b>Claude Code</b></summary>
+
+Run inside Claude Code:
 
 ```text
 /plugin marketplace add rickyrobinett/no-slop-skills
@@ -61,13 +69,14 @@ Copy any folder from `skills/` into your project's `.agents/skills/` directory (
 
 ## Skills
 
-| Skill | What it does | Origin |
-| --- | --- | --- |
-| [`no-slop-slides`](skills/no-slop-slides/SKILL.md) | Keeps AI-generated slide decks focused on story, readability (30pt+ font), real visuals, and clean layouts instead of wordy slop. | [ricky.robinett.ai/noslopslides](https://ricky.robinett.ai/noslopslides) |
+| Skill | What it does |
+| --- | --- |
+| [`no-slop-slides`](skills/no-slop-slides/SKILL.md) | Enforces narrative arc, standalone story headers, 30pt+ minimum font size, real visuals, and digital-twin review for slide decks. |
+| [`no-slop-readme`](skills/no-slop-readme/SKILL.md) | Enforces concise project descriptions, quick-start samples or prompts, verified technical accuracy and casing, and adversarial digital-twin review for `README.md` files. |
 
 ## Contributing
 
-Have a lesson learned or a skill that keeps AI output sharp and human? See [CONTRIBUTING.md](CONTRIBUTING.md) and open a PR.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on adding a new skill or improving an existing one.
 
 ## License
 
