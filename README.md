@@ -1,6 +1,6 @@
 # no-slop-skills
 
-A collection of [Agent Skills](https://agentskills.io) (`SKILL.md` instruction files) that give AI coding agents concrete rules for tasks like slide decks and `README.md` files. Works with Antigravity CLI, Claude Code, Codex, Cursor, Gemini CLI, and other tools that support the Agent Skills format.
+A collection of [Agent Skills](https://agentskills.io) (`SKILL.md` instruction files) that give AI coding agents concrete rules for tasks like slide decks and `README.md` files. Works with Antigravity CLI, Claude Code, Codex, Cursor, and other tools that support the Agent Skills format.
 
 ## Quick Start
 
@@ -47,15 +47,6 @@ Run inside Claude Code:
 
 ```bash
 agy plugin install https://github.com/rickyrobinett/no-slop-skills.git
-```
-
-</details>
-
-<details>
-<summary><b>Gemini CLI</b></summary>
-
-```bash
-gemini skills install https://github.com/rickyrobinett/no-slop-skills.git --path skills
 ```
 
 </details>
