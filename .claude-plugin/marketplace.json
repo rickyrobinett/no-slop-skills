@@ -12,14 +12,15 @@
   "plugins": [
     {
       "name": "no-slop-skills",
-      "description": "Agent skills that keep AI output from looking like slop, starting with no-slop-slides.",
+      "description": "Agent skills that keep AI output from looking like slop.",
       "source": "./",
       "strict": false,
       "homepage": "https://github.com/rickyrobinett/no-slop-skills",
       "license": "MIT",
-      "keywords": ["skills", "agents", "slides", "presentations", "writing", "no-slop"],
+      "keywords": ["skills", "agents", "slides", "presentations", "readme", "writing", "no-slop"],
       "skills": [
-        "./skills/no-slop-slides"
+        "./skills/no-slop-slides",
+        "./skills/no-slop-readme"
       ]
     }
   ]
