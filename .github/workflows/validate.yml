@@ -1,0 +1,123 @@
+name: Validate Skills
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  validate:
+    name: Validate manifests and skills
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate JSON manifests and SKILL.md frontmatter
+        run: |
+          python3 - <<'PY'
+          import json
+          import pathlib
+          import re
+          import sys
+
+          root = pathlib.Path(".")
+          errors = []
+
+          # 1. Validate JSON manifests
+          manifests = [
+              "plugin.json",
+              ".claude-plugin/marketplace.json",
+              ".claude-plugin/plugin.json",
+              ".codex-plugin/plugin.json",
+          ]
+          parsed = {}
+          for rel in manifests:
+              p = root / rel
+              if not p.exists():
+                  errors.append(f"Missing manifest: {rel}")
+                  continue
+              try:
+                  parsed[rel] = json.loads(p.read_text(encoding="utf-8"))
+              except Exception as exc:
+                  errors.append(f"Invalid JSON in {rel}: {exc}")
+
+          # 2. Validate every skill under skills/
+          skills_dir = root / "skills"
+          if not skills_dir.is_dir():
+              errors.append("Missing skills/ directory")
+              skill_dirs = []
+          else:
+              skill_dirs = sorted(p for p in skills_dir.iterdir() if p.is_dir())
+              if not skill_dirs:
+                  errors.append("No skill directories found under skills/")
+
+          discovered_skill_paths = set()
+          for sdir in skill_dirs:
+              dir_name = sdir.name
+              if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", dir_name):
+                  errors.append(f"Skill directory '{dir_name}' must be lowercase kebab-case")
+
+              skill_md = sdir / "SKILL.md"
+              if not skill_md.is_file():
+                  errors.append(f"Missing SKILL.md in skills/{dir_name}/")
+                  continue
+
+              discovered_skill_paths.add(f"./skills/{dir_name}")
+              text = skill_md.read_text(encoding="utf-8")
+              m = re.match(r"^---\r?\n(.*?)\r?\n---\r?\n", text, re.DOTALL)
+              if not m:
+                  errors.append(f"skills/{dir_name}/SKILL.md is missing YAML frontmatter")
+                  continue
+
+              fm = m.group(1)
+              name_m = re.search(r"^name:\s*(.+?)\s*$", fm, re.MULTILINE)
+              if not name_m:
+                  errors.append(f"skills/{dir_name}/SKILL.md frontmatter missing 'name'")
+              else:
+                  fm_name = name_m.group(1).strip().strip("'\"")
+                  if fm_name != dir_name:
+                      errors.append(
+                          f"skills/{dir_name}/SKILL.md frontmatter name '{fm_name}' != directory '{dir_name}'"
+                      )
+
+              desc_m = re.search(
+                  r"^description:\s*(?:[>|][+-]?\s*\n((?:[ \t]+.+\n?)+)|(.+))",
+                  fm,
+                  re.MULTILINE,
+              )
+              desc_val = ""
+              if desc_m:
+                  desc_val = (desc_m.group(1) or desc_m.group(2) or "").strip()
+              if not desc_val:
+                  errors.append(f"skills/{dir_name}/SKILL.md frontmatter missing non-empty 'description'")
+
+          # 3. Validate marketplace.json skill paths match skills/
+          marketplace = parsed.get(".claude-plugin/marketplace.json")
+          if isinstance(marketplace, dict):
+              registered = set()
+              for plugin in marketplace.get("plugins", []):
+                  for spath in plugin.get("skills", []):
+                      registered.add(spath)
+                      target = (root / spath / "SKILL.md").resolve()
+                      if not target.is_file():
+                          errors.append(f"marketplace.json references missing skill: {spath}")
+              missing_from_marketplace = discovered_skill_paths - registered
+              for spath in sorted(missing_from_marketplace):
+                  errors.append(f"Skill {spath} is not registered in .claude-plugin/marketplace.json")
+
+          if errors:
+              for err in errors:
+                  print(f"ERROR: {err}", file=sys.stderr)
+              sys.exit(1)
+
+          print(f"Validated {len(manifests)} manifests and {len(skill_dirs)} skill(s) cleanly.")
+          PY
+
+      - name: Validate Claude plugin (if CLI available)
+        run: |
+          if command -v claude >/dev/null 2>&1; then
+            claude plugin validate .
+          else
+            echo "claude CLI not preinstalled on runner; skipping claude plugin validate."
+          fi

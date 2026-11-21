@@ -2,6 +2,11 @@
 
 Have a lesson learned or a skill that keeps AI output sharp, useful, and human? Open a PR.
 
+## Before proposing a new skill
+
+1. **Check the catalog and open PRs.** Browse the skills table in [README.md](README.md) and open PRs first so we avoid duplicates.
+2. **Prefer extending over duplicating.** If your idea strengthens an existing skill, open a focused PR against that skill instead of adding a near-duplicate.
+
 ## What makes a good no-slop skill
 
 - **Opinionated and concrete.** Give agents specific constraints they can actually follow (like a 30pt minimum font size or standalone story headers), not vague advice like "make it engaging."
@@ -34,3 +39,7 @@ Have a lesson learned or a skill that keeps AI output sharp, useful, and human? 
 ## Improving an existing skill
 
 PRs that tighten wording, add sharp examples, or fix edge cases are always welcome.
+
+## Language
+
+Keep all skills and documentation in **English only**. Translated copies drift out of sync as skills evolve, so we do not accept translation PRs.

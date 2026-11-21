@@ -4,7 +4,7 @@ Agent skills that keep AI output from looking like slop.
 
 ## Install
 
-### Universal (Antigravity, Claude Code, Codex, Cursor, Gemini CLI, etc.)
+**Fastest path — any agent, one command** (Antigravity, Claude Code, Codex, Cursor, Gemini CLI, and more):
 
 ```bash
 npx skills add rickyrobinett/no-slop-skills
@@ -16,16 +16,48 @@ To install a single skill:
 npx skills add rickyrobinett/no-slop-skills --skill no-slop-slides
 ```
 
-### Claude Code Plugin Marketplace
+Prefer a native tool integration? Pick your tool below.
+
+<details>
+<summary><b>Claude Code</b></summary>
 
 ```text
 /plugin marketplace add rickyrobinett/no-slop-skills
 /plugin install no-slop-skills@no-slop-skills
 ```
 
-### Manual (Antigravity / Codex / Gemini CLI)
+> **SSH errors?** If you don't have SSH keys configured on GitHub, use the HTTPS URL instead:
+> ```text
+> /plugin marketplace add https://github.com/rickyrobinett/no-slop-skills.git
+> /plugin install no-slop-skills@no-slop-skills
+> ```
+
+</details>
+
+<details>
+<summary><b>Antigravity CLI</b></summary>
+
+```bash
+agy plugin install https://github.com/rickyrobinett/no-slop-skills.git
+```
+
+</details>
+
+<details>
+<summary><b>Gemini CLI</b></summary>
+
+```bash
+gemini skills install https://github.com/rickyrobinett/no-slop-skills.git --path skills
+```
+
+</details>
+
+<details>
+<summary><b>Manual (Codex / Cursor / local copy)</b></summary>
 
 Copy any folder from `skills/` into your project's `.agents/skills/` directory (or `~/.agents/skills/` globally).
+
+</details>
 
 ## Skills
 

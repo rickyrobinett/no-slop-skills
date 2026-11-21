@@ -1,0 +1,5 @@
+{
+  "name": "no-slop-skills",
+  "version": "1.0.0",
+  "description": "Agent skills that keep AI output from looking like slop."
+}

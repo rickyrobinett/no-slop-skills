@@ -1,0 +1,18 @@
+{
+  "name": "no-slop-skills",
+  "version": "1.0.0",
+  "description": "Agent skills that keep AI output from looking like slop.",
+  "author": {
+    "name": "Ricky Robinett",
+    "url": "https://github.com/rickyrobinett"
+  },
+  "homepage": "https://github.com/rickyrobinett/no-slop-skills",
+  "repository": "https://github.com/rickyrobinett/no-slop-skills",
+  "license": "MIT",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "No-Slop Skills",
+    "shortDescription": "Agent skills that keep AI output from looking like slop.",
+    "category": "Productivity"
+  }
+}
