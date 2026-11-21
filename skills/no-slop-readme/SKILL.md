@@ -10,7 +10,7 @@ description: >
 license: MIT
 metadata:
   author: Ricky Robinett
-  version: "1.0.0"
+  version: "2.0.0"
 ---
 
 # No Slop README
@@ -19,9 +19,10 @@ metadata:
 
 A good README typically follows the following format:
 
-- **Header:** This is the name of your project.
+- **Header:** This is the name of your project. Don't copy straight from repo slug, use the actual name (e.g., `no-slop-skills` vs `No Slop Skills`).
 - **A description of the project:** Keep this concise, 1–3 sentences max. And avoid marketing jargon and hyperbole.
 - **Quick Start:** Many readers make it to your repository already knowing they want to use it; help them get started as quickly as possible.
+- **The Why and How:** Especially in the world of agents consuming content, it's helpful to describe why a repo exists and how it works.
 - **Contribution Guide, Team:** If needed, provide a contribution guide and team highlights.
 - **License:** So readers know what they can and can't do with this code.
 
@@ -34,6 +35,10 @@ A README should help get a reader to hello world as quickly as possible. Promine
 ### Technical Accuracy
 
 Validate that any statements made within the README are technically accurate and verified. Ensure that casing and spacing are correct (e.g., php vs PHP, agent skills vs AgentSkills vs Agent Skills). If in doubt about any portion of the README, go back to the user to ask questions and verify.
+
+### Agent Aware
+
+When relevant, provide instructions for not only humans but agents to use your project. And make sure the README provides agents anything they'd need to understand and use this repository.
 
 ### Adversarial Reviewers
 
