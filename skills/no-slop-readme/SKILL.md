@@ -10,7 +10,7 @@ description: >
 license: MIT
 metadata:
   author: Ricky Robinett
-  version: "7.0.0"
+  version: "8.0.0"
 ---
 
 # No Slop README
@@ -45,6 +45,10 @@ Since technology is rapidly changing, use search grounding to find the most up-t
 
 When relevant, don't just describe the repository but show the user visually (using tables, ASCII charts, demo gifs, properly highlighted and formatted code highlighting) including the file structure or workflows. Don't overdo this though, only add a visual display if it meaningfully improves the understanding a reader would have of the repo or how it works.
 
+### User focus
+
+Every word in the README should be in service of helping the reader understand your repository and be successful using it. Be relentless in reviewing the content for how it empowers and educates the reader, and cut down any sections that are strictly pontification.
+
 ### Agent Aware
 
 When relevant, provide instructions for not only humans but agents to use your project. And make sure the README provides agents anything they'd need to understand and use this repository.
@@ -55,7 +59,7 @@ Make sure that the spacing and layout make the content easy for a user to grok. 
 
 ### Adversarial Reviewers
 
-After completing a README draft, run a review pass with digital twins of target users of various skill levels to give feedback on understandability, usability and to help refine.
+After completing a README draft, run a review pass with digital twins of target users of various skill levels to give feedback on understandability, usability and to help refine. If you're unsure of who the target audience is for the repo, confirm with the user.
 
 ## What to avoid
 
