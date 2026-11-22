@@ -4,22 +4,17 @@ A collection of [Agent Skills](https://agentskills.io) (`SKILL.md` instruction f
 
 ## Quick Start
 
-Install all skills (requires Node.js):
+Install via the skills CLI (requires Node.js):
 
 ```bash
-npx skills add rickyrobinett/no-slop-skills
+npx skills add rickyrobinett/no-slop-skills                         # install all skills
+npx skills add rickyrobinett/no-slop-skills --skill no-slop-readme  # install a single skill
 ```
 
 Then invoke a skill in your agent with a prompt (or let it trigger automatically on a matching task):
 
 ```text
 Use the no-slop-readme skill to review and rewrite this repository's README.md.
-```
-
-To install a single skill instead of the full collection:
-
-```bash
-npx skills add rickyrobinett/no-slop-skills --skill no-slop-readme
 ```
 
 ### Other installation methods
@@ -54,7 +49,7 @@ agy plugin install https://github.com/rickyrobinett/no-slop-skills.git
 <details>
 <summary><b>Manual (Codex / Cursor / local copy)</b></summary>
 
-Copy any folder from `skills/` into your project's `.agents/skills/` directory (or `~/.agents/skills/` globally).
+Clone this repository and copy any folder from `skills/` into your project's `.agents/skills/` directory (or `~/.agents/skills/` globally).
 
 </details>
 
@@ -63,21 +58,13 @@ Copy any folder from `skills/` into your project's `.agents/skills/` directory (
 | Skill | What it does |
 | --- | --- |
 | [`no-slop-slides`](skills/no-slop-slides/SKILL.md) | Enforces narrative arc, standalone story headers, 30pt+ minimum font size, real visuals, and digital-twin review for slide decks. |
-| [`no-slop-readme`](skills/no-slop-readme/SKILL.md) | Enforces clear headers, concise descriptions, fast quick starts, Show and Tell visuals, agent-aware docs, verified technical accuracy, and digital-twin review for `README.md` files. |
+| [`no-slop-readme`](skills/no-slop-readme/SKILL.md) | Enforces clear headers, concise descriptions, fast quick starts, purposeful visuals, agent-aware docs, verified technical accuracy, and digital-twin review for `README.md` files. |
 
 ## Why and How
 
 AI coding agents default to generic, verbose output (filler slides, marketing-heavy READMEs, decorative emojis) when given open-ended prompts. Opinionated, human-tested rules fix that behavior at the source instead of requiring manual cleanup afterward.
 
-Each skill lives in `skills/<skill-name>/SKILL.md` as a self-contained Markdown file with YAML frontmatter (`name`, `description`, `license`, `metadata`) following the [Agent Skills](https://agentskills.io) specification. Agents match the frontmatter automatically (or when named in a prompt), load the Markdown body as task instructions, and run a digital-twin review before finalizing output:
-
-```text
-  Install            Match               Apply                Review & output
-+------------+     +-------------+     +--------------+     +-----------------+
-| npx skills | --> | Agent reads | --> | Loads        | --> | Digital-twin    |
-| or plugin  |     | frontmatter |     | SKILL.md     |     | review -> final |
-+------------+     +-------------+     +--------------+     +-----------------+
-```
+Each skill lives in `skills/<skill-name>/SKILL.md` as a self-contained Markdown file with YAML frontmatter (`name`, `description`, `license`, `metadata`) following the [Agent Skills](https://agentskills.io) specification. Agents match the frontmatter automatically (or when named in a prompt), load the Markdown body as task instructions, and run a digital-twin review before finalizing output.
 
 ### Repository layout
 
@@ -95,24 +82,13 @@ no-slop-skills/
 └── .github/workflows/validate.yml  # CI manifest & frontmatter validator
 ```
 
-### Runtime compatibility
-
-The same `skills/` directory is exposed across agent runtimes through their respective manifests:
-
-| Runtime | Manifest | Install method |
-| --- | --- | --- |
-| Antigravity CLI | `plugin.json` | `agy plugin install` or `npx skills add` |
-| Claude Code | `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json` | `/plugin marketplace add` or `npx skills add` |
-| Codex | `.codex-plugin/plugin.json` | `npx skills add` or manual copy to `.agents/skills/` |
-| Cursor and other Agent Skills tools | `skills/*/SKILL.md` | `npx skills add` or manual copy to `.agents/skills/` |
-
 ## For Agents
 
 If you are an AI coding agent inspecting, using, or modifying this repository:
 
 - **Discover and apply skills directly:** List `skills/*/SKILL.md`. Read each file's YAML frontmatter (`name`, `description`) to match the current task, then follow the Markdown body verbatim. Skills are self-contained with no build step or runtime dependencies.
 - **Edit or add a skill:** Follow [CONTRIBUTING.md](CONTRIBUTING.md) (English-only, no private data). Every skill requires a lowercase kebab-case folder `skills/<skill-name>/SKILL.md` whose frontmatter `name` matches the folder name and includes a non-empty `description`. Register `"./skills/<skill-name>"` under `plugins[0].skills` in `.claude-plugin/marketplace.json`, then update the [Skills](#skills) table and [Repository layout](#repository-layout) above.
-- **Validate changes:** CI runs the `Validate Skills` workflow in [`.github/workflows/validate.yml`](.github/workflows/validate.yml), which executes an inline Python check verifying all four JSON manifests (`plugin.json`, `.claude-plugin/marketplace.json`, `.claude-plugin/plugin.json`, `.codex-plugin/plugin.json`), skill directory naming, `SKILL.md` frontmatter, and `marketplace.json` registration, followed by `claude plugin validate .` when the `claude` CLI is installed.
+- **Validate changes:** CI runs the `Validate Skills` workflow in [`.github/workflows/validate.yml`](.github/workflows/validate.yml), which verifies all four JSON manifests (`plugin.json`, `.claude-plugin/marketplace.json`, `.claude-plugin/plugin.json`, `.codex-plugin/plugin.json`), skill directory naming, `SKILL.md` frontmatter, and `marketplace.json` registration, followed by `claude plugin validate .` when the `claude` CLI is installed.
 
 ## Contributing
 
