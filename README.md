@@ -1,8 +1,13 @@
 # No Slop Skills
 
+[![Validate Skills](https://github.com/rickyrobinett/no-slop-skills/actions/workflows/validate.yml/badge.svg)](https://github.com/rickyrobinett/no-slop-skills/actions/workflows/validate.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 A collection of [Agent Skills](https://agentskills.io) (`SKILL.md` instruction files) that give AI coding agents concrete rules for tasks like slide decks and `README.md` files. Works with Antigravity CLI, Claude Code, Codex, Cursor, and other tools that support the Agent Skills standard.
 
 ## Quick Start
+
+### With the CLI
 
 Install with the [Skills CLI](https://skills.sh) (requires Node.js):
 
@@ -11,11 +16,21 @@ npx skills add rickyrobinett/no-slop-skills                        # all skills
 npx skills add rickyrobinett/no-slop-skills --skill no-slop-readme # single skill
 ```
 
-Then invoke a skill in your agent (or let it trigger automatically on a matching task):
+Then run a skill in your agent (or let it trigger automatically on a matching task):
 
 ```text
 Use the no-slop-readme skill to review and rewrite this repository's README.md.
 ```
+
+### With a prompt (no terminal required)
+
+Not comfortable with the terminal? Paste this into Claude Code, Cursor, Codex, or Antigravity to install and run a skill in one step:
+
+```text
+Install the skills from https://github.com/rickyrobinett/no-slop-skills, then use the no-slop-readme skill to review and rewrite my README.md.
+```
+
+Replace `no-slop-readme` with `no-slop-slides` if you are working on a slide deck.
 
 ### Other installation methods
 
@@ -59,7 +74,7 @@ Clone this repository and copy any folder from `skills/` into your project's `.a
 | Skill | Applies to | Key rules |
 | --- | --- | --- |
 | [`no-slop-slides`](skills/no-slop-slides/SKILL.md) | Slide decks | Narrative arc, standalone headers, 30pt+ font, real visuals, digital-twin review |
-| [`no-slop-readme`](skills/no-slop-readme/SKILL.md) | `README.md` files | Fast quick start, verified accuracy, clean layout, agent instructions, digital-twin review |
+| [`no-slop-readme`](skills/no-slop-readme/SKILL.md) | `README.md` files | Fast quick start, verified accuracy, restrained badges, clean layout, digital-twin review |
 
 ## Why and How
 
