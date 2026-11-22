@@ -78,22 +78,16 @@ Clone this repository and copy any folder from `skills/` into your project's `.a
 
 ## Why and How
 
-AI coding agents default to generic, verbose output (filler slides, marketing-heavy READMEs, decorative emojis) when given open-ended prompts. Opinionated, human-tested rules fix that behavior at the source instead of requiring manual cleanup afterward.
+No Slop Skills encodes Ricky Robinett's anti-slop rules for slide decks (`no-slop-slides`) and project READMEs (`no-slop-readme`) into reusable `SKILL.md` files, and dogfoods `no-slop-readme` on this repository's own `README.md`.
 
-### How skills work
-
-Each skill is a self-contained `skills/<skill-name>/SKILL.md` file following the [Agent Skills](https://agentskills.io) specification:
-
-1. **Discover:** Agents read the YAML frontmatter (`name`, `description`) to match a task automatically, or activate a skill when named in a prompt.
-2. **Execute:** Agents load the Markdown body as task instructions.
-3. **Review:** Skills include a digital-twin review pass before finalizing output.
+Each skill lives in a single Markdown file under `skills/<skill-name>/SKILL.md` with no build step or runtime dependencies. The Skills CLI reads `skills/` directly, while four plugin manifests expose those same files to Antigravity CLI, Claude Code, and Codex, and [`.github/workflows/validate.yml`](.github/workflows/validate.yml) checks every manifest, skill folder name, YAML frontmatter block, and `marketplace.json` registration on each push and pull request.
 
 ### Repository layout
 
 ```text
 no-slop-skills/
 ├── skills/
-│   ├── no-slop-readme/SKILL.md     # README rules (YAML frontmatter + body)
+│   ├── no-slop-readme/SKILL.md     # README rules
 │   └── no-slop-slides/SKILL.md     # Slide deck rules
 ├── plugin.json                     # Antigravity CLI manifest
 ├── .claude-plugin/
@@ -129,6 +123,12 @@ CI runs `Validate Skills` ([`.github/workflows/validate.yml`](.github/workflows/
 - Checks all four JSON manifests: `plugin.json`, `.claude-plugin/marketplace.json`, `.claude-plugin/plugin.json`, and `.codex-plugin/plugin.json`.
 - Verifies skill folder naming, `SKILL.md` frontmatter, and `marketplace.json` registration.
 - Runs `claude plugin validate .` when the `claude` CLI is installed (run it locally too if available).
+
+## Resources
+
+- [Please, no more AI slop slides](https://ricky.robinett.ai/noslopslides) — original guide and slide template behind `no-slop-slides`
+- [Agent Skills Specification](https://agentskills.io) — open format used by `skills/*/SKILL.md`
+- [Skills CLI (`skills.sh`)](https://skills.sh) — CLI installer for Agent Skills
 
 ## Contributing
 
