@@ -10,7 +10,7 @@ description: >
 license: MIT
 metadata:
   author: Ricky Robinett
-  version: "2.0.0"
+  version: "3.0.0"
 ---
 
 # No Slop README
@@ -36,6 +36,10 @@ A README should help get a reader to hello world as quickly as possible. Promine
 
 Validate that any statements made within the README are technically accurate and verified. Ensure that casing and spacing are correct (e.g., php vs PHP, agent skills vs AgentSkills vs Agent Skills). If in doubt about any portion of the README, go back to the user to ask questions and verify.
 
+### Show and Tell
+
+When relevant, don't just describe the repository but show the user visually (using tables, ASCII charts, demo gifs) including the file structure or workflows.
+
 ### Agent Aware
 
 When relevant, provide instructions for not only humans but agents to use your project. And make sure the README provides agents anything they'd need to understand and use this repository.
@@ -53,3 +57,11 @@ Readers are here to be empowered, not marketed to. Ensure the README is focused 
 ### Emojis
 
 Use emojis only if they directly relate to what the README is helping a user accomplish.
+
+## Sample Repos
+
+Here are some sample repos with READMEs I like:
+
+- https://github.com/addyosmani/agent-skills
+- https://github.com/langchain-ai/langchain
+- https://github.com/redis/redis
