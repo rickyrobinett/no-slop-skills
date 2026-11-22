@@ -3,7 +3,7 @@
 [![Validate Skills](https://github.com/rickyrobinett/no-slop-skills/actions/workflows/validate.yml/badge.svg)](https://github.com/rickyrobinett/no-slop-skills/actions/workflows/validate.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-A collection of [Agent Skills](https://agentskills.io) (`SKILL.md` instruction files) that give AI coding agents concrete rules for tasks like slide decks and `README.md` files. Works with Antigravity CLI, Claude Code, Codex, Cursor, and other tools that support the Agent Skills standard.
+[Agent Skills](https://agentskills.io) (`SKILL.md` instruction files) that give AI coding agents concrete rules for slide decks and `README.md` files. Works with Antigravity CLI, Claude Code, Codex, Cursor, and other tools that support the Agent Skills standard.
 
 ## Quick Start
 
@@ -24,13 +24,13 @@ Use the no-slop-readme skill to review and rewrite this repository's README.md.
 
 ### With a prompt (no terminal required)
 
-Not comfortable with the terminal? Paste this into Claude Code, Cursor, Codex, or Antigravity to install and run a skill in one step:
+Paste this into Claude Code, Cursor, Codex, or Antigravity CLI to install and run a skill in one step:
 
 ```text
 Install the skills from https://github.com/rickyrobinett/no-slop-skills, then use the no-slop-readme skill to review and rewrite my README.md.
 ```
 
-Replace `no-slop-readme` with `no-slop-slides` if you are working on a slide deck.
+For slide decks, replace `no-slop-readme` with `no-slop-slides`.
 
 ### Other installation methods
 
@@ -44,7 +44,7 @@ Run inside Claude Code:
 /plugin install no-slop-skills@no-slop-skills
 ```
 
-> **SSH errors?** If you don't have SSH keys configured on GitHub, use the HTTPS URL instead:
+> **SSH errors?** Use the HTTPS URL instead:
 >
 > ```text
 > /plugin marketplace add https://github.com/rickyrobinett/no-slop-skills.git
@@ -74,13 +74,13 @@ Clone this repository and copy any folder from `skills/` into your project's `.a
 | Skill | Applies to | Key rules |
 | --- | --- | --- |
 | [`no-slop-slides`](skills/no-slop-slides/SKILL.md) | Slide decks | Narrative arc, standalone headers, 30pt+ font, real visuals, digital-twin review |
-| [`no-slop-readme`](skills/no-slop-readme/SKILL.md) | `README.md` files | Fast quick start, verified accuracy, restrained badges, clean layout, digital-twin review |
+| [`no-slop-readme`](skills/no-slop-readme/SKILL.md) | `README.md` files | Fast quick start, user focus, verified accuracy, restrained badges, digital-twin review |
 
 ## Why and How
 
-No Slop Skills encodes Ricky Robinett's anti-slop rules for slide decks (`no-slop-slides`) and project READMEs (`no-slop-readme`) into reusable `SKILL.md` files, and dogfoods `no-slop-readme` on this repository's own `README.md`.
+AI agents default to generic, padded output on slide decks and READMEs unless given explicit constraints. Each skill in this repository packages concrete rules into a single Markdown file (`skills/<skill-name>/SKILL.md`) with no build step or runtime dependencies.
 
-Each skill lives in a single Markdown file under `skills/<skill-name>/SKILL.md` with no build step or runtime dependencies. The Skills CLI reads `skills/` directly, while four plugin manifests expose those same files to Antigravity CLI, Claude Code, and Codex, and [`.github/workflows/validate.yml`](.github/workflows/validate.yml) checks every manifest, skill folder name, YAML frontmatter block, and `marketplace.json` registration on each push and pull request.
+The Skills CLI reads `skills/` directly, and four plugin manifests expose those same files to Antigravity CLI, Claude Code, and Codex. On every push and pull request, [`.github/workflows/validate.yml`](.github/workflows/validate.yml) validates all manifests and skill files.
 
 ### Repository layout
 
@@ -100,12 +100,10 @@ no-slop-skills/
 
 ## For Agents
 
-If you are an AI coding agent inspecting, using, or modifying this repository:
-
 ### Discover and apply skills
 
 - List `skills/*/SKILL.md` and read each file's YAML frontmatter (`name`, `description`) to match the current task.
-- Follow the Markdown body verbatim. Skills have no build step or runtime dependencies.
+- Follow the Markdown body verbatim.
 
 ### Edit or add a skill
 
@@ -118,11 +116,10 @@ Follow [CONTRIBUTING.md](CONTRIBUTING.md) (English-only, no private data):
 
 ### Validate changes
 
-CI runs `Validate Skills` ([`.github/workflows/validate.yml`](.github/workflows/validate.yml)) on pushes and pull requests:
+Run `claude plugin validate .` locally if the `claude` CLI is installed. On push and pull request, [`.github/workflows/validate.yml`](.github/workflows/validate.yml) checks:
 
-- Checks all four JSON manifests: `plugin.json`, `.claude-plugin/marketplace.json`, `.claude-plugin/plugin.json`, and `.codex-plugin/plugin.json`.
-- Verifies skill folder naming, `SKILL.md` frontmatter, and `marketplace.json` registration.
-- Runs `claude plugin validate .` when the `claude` CLI is installed (run it locally too if available).
+- All four JSON manifests (`plugin.json`, `.claude-plugin/marketplace.json`, `.claude-plugin/plugin.json`, `.codex-plugin/plugin.json`).
+- Kebab-case skill folder names, `SKILL.md` frontmatter (`name`, `description`), and `marketplace.json` registration.
 
 ## Resources
 
@@ -132,7 +129,7 @@ CI runs `Validate Skills` ([`.github/workflows/validate.yml`](.github/workflows/
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on adding a new skill or improving an existing one.
+See [CONTRIBUTING.md](CONTRIBUTING.md) to add a skill or improve an existing one.
 
 ## License
 
