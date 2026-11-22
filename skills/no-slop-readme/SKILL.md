@@ -10,7 +10,7 @@ description: >
 license: MIT
 metadata:
   author: Ricky Robinett
-  version: "3.0.0"
+  version: "4.0.0"
 ---
 
 # No Slop README
@@ -38,7 +38,7 @@ Validate that any statements made within the README are technically accurate and
 
 ### Show and Tell
 
-When relevant, don't just describe the repository but show the user visually (using tables, ASCII charts, demo gifs) including the file structure or workflows.
+When relevant, don't just describe the repository but show the user visually (using tables, ASCII charts, demo gifs, properly highlighted and formatted code highlighting) including the file structure or workflows. Don't overdo this though, only add a visual display if it meaningfully improves the understanding a reader would have of the repo or how it works.
 
 ### Agent Aware
 
@@ -60,7 +60,7 @@ Use emojis only if they directly relate to what the README is helping a user acc
 
 ## Sample Repos
 
-Here are some sample repos with READMEs I like:
+Here are some sample repos with READMEs I like. Examine them for inspiration and insight:
 
 - https://github.com/addyosmani/agent-skills
 - https://github.com/langchain-ai/langchain
