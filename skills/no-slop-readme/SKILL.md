@@ -10,7 +10,7 @@ description: >
 license: MIT
 metadata:
   author: Ricky Robinett
-  version: "5.0.0"
+  version: "6.0.0"
 ---
 
 # No Slop README
@@ -21,7 +21,7 @@ A good README typically follows the following format:
 
 - **Header:** This is the name of your project. Don't copy straight from repo slug, use the actual name (e.g., `no-slop-skills` vs `No Slop Skills`).
 - **A description of the project:** Keep this concise, 1–3 sentences max. And avoid marketing jargon and hyperbole.
-- **Quick Start:** Many readers make it to your repository already knowing they want to use it; help them get started as quickly as possible.
+- **Quick Start:** Many readers make it to your repository already knowing they want to use it; help them get started as quickly as possible. This should include code (where appropriate) and a copyable getting started prompt for people who aren't comfortable with code.
 - **The Why and How:** Especially in the world of agents consuming content, it's helpful to describe why a repo exists and how it works.
 - **Contribution Guide, Team:** If needed, provide a contribution guide and team highlights.
 - **License:** So readers know what they can and can't do with this code.
@@ -65,6 +65,10 @@ Readers are here to be empowered, not marketed to. Ensure the README is focused 
 ### Emojis
 
 Use emojis only if they directly relate to what the README is helping a user accomplish.
+
+### Badge overload
+
+When relevant, add badges after the project name. But don't overload with niche or irrelevant badges. Just because you can show a badge doesn't mean you should show a badge. If in doubt about a badge, confirm with the user if they should place it.
 
 ## Sample Repos
 
