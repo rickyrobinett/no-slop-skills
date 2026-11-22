@@ -10,7 +10,7 @@ description: >
 license: MIT
 metadata:
   author: Ricky Robinett
-  version: "4.0.0"
+  version: "5.0.0"
 ---
 
 # No Slop README
@@ -36,6 +36,10 @@ A README should help get a reader to hello world as quickly as possible. Promine
 
 Validate that any statements made within the README are technically accurate and verified. Ensure that casing and spacing are correct (e.g., php vs PHP, agent skills vs AgentSkills vs Agent Skills). If in doubt about any portion of the README, go back to the user to ask questions and verify.
 
+### Check for updates
+
+Since technology is rapidly changing, use search grounding to find the most up-to-date and relevant information about things like integrations. Assume that it's likely your knowledge cutoff will cause issues without additional, more recent context.
+
 ### Show and Tell
 
 When relevant, don't just describe the repository but show the user visually (using tables, ASCII charts, demo gifs, properly highlighted and formatted code highlighting) including the file structure or workflows. Don't overdo this though, only add a visual display if it meaningfully improves the understanding a reader would have of the repo or how it works.
@@ -43,6 +47,10 @@ When relevant, don't just describe the repository but show the user visually (us
 ### Agent Aware
 
 When relevant, provide instructions for not only humans but agents to use your project. And make sure the README provides agents anything they'd need to understand and use this repository.
+
+### Spacing and layout
+
+Make sure that the spacing and layout make the content easy for a user to grok. If using a table, make the columns the appropriate width given the content. Large chunks of text can make it difficult for people to follow, use white space and the full capabilities of markdown to create visual hierarchy that is clean, clear and simple.
 
 ### Adversarial Reviewers
 
