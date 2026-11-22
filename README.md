@@ -1,17 +1,17 @@
 # No Slop Skills
 
-A collection of [Agent Skills](https://agentskills.io) (`SKILL.md` instruction files) that give AI coding agents concrete rules for tasks like slide decks and `README.md` files. Works with Antigravity CLI, Claude Code, Codex, Cursor, and other tools that support the Agent Skills format.
+A collection of [Agent Skills](https://agentskills.io) (`SKILL.md` instruction files) that give AI coding agents concrete rules for tasks like slide decks and `README.md` files. Works with Antigravity CLI, Claude Code, Codex, Cursor, and other tools that support the Agent Skills standard.
 
 ## Quick Start
 
-Install via the skills CLI (requires Node.js):
+Install with the [Skills CLI](https://skills.sh) (requires Node.js):
 
 ```bash
-npx skills add rickyrobinett/no-slop-skills                         # install all skills
-npx skills add rickyrobinett/no-slop-skills --skill no-slop-readme  # install a single skill
+npx skills add rickyrobinett/no-slop-skills                        # all skills
+npx skills add rickyrobinett/no-slop-skills --skill no-slop-readme # single skill
 ```
 
-Then invoke a skill in your agent with a prompt (or let it trigger automatically on a matching task):
+Then invoke a skill in your agent (or let it trigger automatically on a matching task):
 
 ```text
 Use the no-slop-readme skill to review and rewrite this repository's README.md.
@@ -30,6 +30,7 @@ Run inside Claude Code:
 ```
 
 > **SSH errors?** If you don't have SSH keys configured on GitHub, use the HTTPS URL instead:
+>
 > ```text
 > /plugin marketplace add https://github.com/rickyrobinett/no-slop-skills.git
 > /plugin install no-slop-skills@no-slop-skills
@@ -55,16 +56,22 @@ Clone this repository and copy any folder from `skills/` into your project's `.a
 
 ## Skills
 
-| Skill | What it does |
-| --- | --- |
-| [`no-slop-slides`](skills/no-slop-slides/SKILL.md) | Enforces narrative arc, standalone story headers, 30pt+ minimum font size, real visuals, and digital-twin review for slide decks. |
-| [`no-slop-readme`](skills/no-slop-readme/SKILL.md) | Enforces clear headers, concise descriptions, fast quick starts, purposeful visuals, agent-aware docs, verified technical accuracy, and digital-twin review for `README.md` files. |
+| Skill | Applies to | Key rules |
+| --- | --- | --- |
+| [`no-slop-slides`](skills/no-slop-slides/SKILL.md) | Slide decks | Narrative arc, standalone headers, 30pt+ font, real visuals, digital-twin review |
+| [`no-slop-readme`](skills/no-slop-readme/SKILL.md) | `README.md` files | Fast quick start, verified accuracy, clean layout, agent instructions, digital-twin review |
 
 ## Why and How
 
 AI coding agents default to generic, verbose output (filler slides, marketing-heavy READMEs, decorative emojis) when given open-ended prompts. Opinionated, human-tested rules fix that behavior at the source instead of requiring manual cleanup afterward.
 
-Each skill lives in `skills/<skill-name>/SKILL.md` as a self-contained Markdown file with YAML frontmatter (`name`, `description`, `license`, `metadata`) following the [Agent Skills](https://agentskills.io) specification. Agents match the frontmatter automatically (or when named in a prompt), load the Markdown body as task instructions, and run a digital-twin review before finalizing output.
+### How skills work
+
+Each skill is a self-contained `skills/<skill-name>/SKILL.md` file following the [Agent Skills](https://agentskills.io) specification:
+
+1. **Discover:** Agents read the YAML frontmatter (`name`, `description`) to match a task automatically, or activate a skill when named in a prompt.
+2. **Execute:** Agents load the Markdown body as task instructions.
+3. **Review:** Skills include a digital-twin review pass before finalizing output.
 
 ### Repository layout
 
@@ -86,9 +93,27 @@ no-slop-skills/
 
 If you are an AI coding agent inspecting, using, or modifying this repository:
 
-- **Discover and apply skills directly:** List `skills/*/SKILL.md`. Read each file's YAML frontmatter (`name`, `description`) to match the current task, then follow the Markdown body verbatim. Skills are self-contained with no build step or runtime dependencies.
-- **Edit or add a skill:** Follow [CONTRIBUTING.md](CONTRIBUTING.md) (English-only, no private data). Every skill requires a lowercase kebab-case folder `skills/<skill-name>/SKILL.md` whose frontmatter `name` matches the folder name and includes a non-empty `description`. Register `"./skills/<skill-name>"` under `plugins[0].skills` in `.claude-plugin/marketplace.json`, then update the [Skills](#skills) table and [Repository layout](#repository-layout) above.
-- **Validate changes:** CI runs the `Validate Skills` workflow in [`.github/workflows/validate.yml`](.github/workflows/validate.yml), which verifies all four JSON manifests (`plugin.json`, `.claude-plugin/marketplace.json`, `.claude-plugin/plugin.json`, `.codex-plugin/plugin.json`), skill directory naming, `SKILL.md` frontmatter, and `marketplace.json` registration, followed by `claude plugin validate .` when the `claude` CLI is installed.
+### Discover and apply skills
+
+- List `skills/*/SKILL.md` and read each file's YAML frontmatter (`name`, `description`) to match the current task.
+- Follow the Markdown body verbatim. Skills have no build step or runtime dependencies.
+
+### Edit or add a skill
+
+Follow [CONTRIBUTING.md](CONTRIBUTING.md) (English-only, no private data):
+
+1. Create `skills/<skill-name>/SKILL.md` using a lowercase kebab-case folder name.
+2. Set YAML frontmatter `name` to match the folder name and include a non-empty `description`.
+3. Register `"./skills/<skill-name>"` under `plugins[0].skills` in `.claude-plugin/marketplace.json`.
+4. Update the [Skills](#skills) table and [Repository layout](#repository-layout) above.
+
+### Validate changes
+
+CI runs `Validate Skills` ([`.github/workflows/validate.yml`](.github/workflows/validate.yml)) on pushes and pull requests:
+
+- Checks all four JSON manifests: `plugin.json`, `.claude-plugin/marketplace.json`, `.claude-plugin/plugin.json`, and `.codex-plugin/plugin.json`.
+- Verifies skill folder naming, `SKILL.md` frontmatter, and `marketplace.json` registration.
+- Runs `claude plugin validate .` when the `claude` CLI is installed (run it locally too if available).
 
 ## Contributing
 
