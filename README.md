@@ -3,7 +3,7 @@
 [![Validate Skills](https://github.com/rickyrobinett/no-slop-skills/actions/workflows/validate.yml/badge.svg)](https://github.com/rickyrobinett/no-slop-skills/actions/workflows/validate.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-[Agent Skills](https://agentskills.io) (`SKILL.md` instruction files) that give AI coding agents concrete rules for slide decks and `README.md` files. Works with Antigravity CLI, Claude Code, Codex, Cursor, and other tools that support the Agent Skills standard.
+[Agent Skills](https://agentskills.io) (`SKILL.md` instruction files) that give AI coding agents concrete rules for slide decks, videos, and `README.md` files. Works with Antigravity CLI, Claude Code, Codex, Cursor, and other tools that support the Agent Skills standard.
 
 ## Quick Start
 
@@ -30,7 +30,7 @@ Paste this into Claude Code, Cursor, Codex, or Antigravity CLI to install and ru
 Install the skills from https://github.com/rickyrobinett/no-slop-skills, then use the no-slop-readme skill to review and rewrite my README.md.
 ```
 
-For slide decks, replace `no-slop-readme` with `no-slop-slides`.
+For slide decks or videos, replace `no-slop-readme` with `no-slop-slides` or `no-slop-video`.
 
 ### Other installation methods
 
@@ -75,6 +75,7 @@ Clone this repository and copy any folder from `skills/` into your project's `.a
 | --- | --- | --- |
 | [`no-slop-slides`](skills/no-slop-slides/SKILL.md) | Slide decks | Narrative arc, standalone headers, 30pt+ font, real visuals, digital-twin review |
 | [`no-slop-readme`](skills/no-slop-readme/SKILL.md) | `README.md` files | Fast quick start, user focus, verified accuracy, restrained badges, digital-twin review |
+| [`no-slop-video`](skills/no-slop-video/SKILL.md) | Video editing | 8-second hook, hard clean endings, real footage, glance-test thumbnails, blind digital-twin review |
 
 ## Why and How
 
