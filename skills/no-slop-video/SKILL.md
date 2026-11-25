@@ -14,10 +14,10 @@ license: MIT
 metadata:
   author: Ricky Robinett
   version: "1.0.0"
-  source: https://ricky.robinett.ai/noslopvideo
+  source: https://ricky.robinett.ai/noslopvideos
 ---
 
-# Please, no more AI slop video
+# Please, no more AI slop videos
 
 ## Narrative
 
