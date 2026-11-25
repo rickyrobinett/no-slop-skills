@@ -89,7 +89,8 @@ The Skills CLI reads `skills/` directly, and four plugin manifests expose those 
 no-slop-skills/
 ├── skills/
 │   ├── no-slop-readme/SKILL.md     # README rules
-│   └── no-slop-slides/SKILL.md     # Slide deck rules
+│   ├── no-slop-slides/SKILL.md     # Slide deck rules
+│   └── no-slop-video/SKILL.md      # Video editing rules
 ├── plugin.json                     # Antigravity CLI manifest
 ├── .claude-plugin/
 │   ├── plugin.json                 # Claude Code plugin manifest
